@@ -48,6 +48,7 @@
             position: sticky;
             top: 0;
             width: 100vw;
+            height: 100vh;
             height: 100dvh; 
             overflow: hidden;
         }
@@ -97,7 +98,7 @@
             text-align: center;
             pointer-events: none;
             width: 100%;
-            padding: 0 20px;
+            padding: 0 15px;
             opacity: 0;
             will-change: transform, opacity, filter;
         }
@@ -105,9 +106,13 @@
         .title-main {
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            line-height: 0.9;
-            font-size: clamp(2.5rem, 9vw, 7rem); 
+            letter-spacing: 0.02em; 
+            line-height: 1.1; /* Increased line height for multi-line names */
+            /* FIXED: Smaller minimum size to prevent bleeding on mobile */
+            font-size: clamp(1.5rem, 7vw, 6rem); 
+            max-width: 95vw; /* Ensure it stays within screen width */
+            margin: 0 auto;
+            word-wrap: break-word;
         }
 
         .subtitle {
@@ -137,7 +142,8 @@
 
         /* --- EVENT CARD SYSTEM --- */
         .event-scroll-wrapper {
-            height: 180vh;
+            /* TALLER SCROLL AREA FOR LONGER PAUSE */
+            height: 350vh; 
             position: relative;
             background-color: var(--bg-color);
             z-index: 10;
@@ -161,7 +167,7 @@
             background: #111;
             overflow: hidden;
             will-change: width, height, transform;
-            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
             transition: box-shadow 0.5s ease;
         }
 
@@ -181,87 +187,40 @@
             padding: 3rem;
             opacity: 0; 
             transform: translateY(30px);
-            /* Default dark gradient base */
             background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, transparent);
             box-sizing: border-box;
             z-index: 20;
         }
 
-        /* --- VIBRANT DARK GRADIENT THEMES --- */
+        /* --- THEMES --- */
 
-        /* 1. MEHNDI (Dark Yellow/Gold) */
-        .theme-yellow { 
-            box-shadow: 0 30px 80px -10px rgba(255, 200, 0, 0.25); 
-        }
-        .theme-yellow .card-content { 
-            /* Dark Golden-Brown Gradient */
-            background: linear-gradient(to top, rgba(60, 45, 0, 0.98) 0%, rgba(60, 45, 0, 0.7) 50%, transparent 100%); 
-        }
+        /* 1. MEHNDI (Yellow Glow) */
+        .theme-yellow { box-shadow: 0 30px 80px -10px rgba(255, 200, 0, 0.25); }
+        .theme-yellow .card-content { background: linear-gradient(to top, rgba(60, 45, 0, 0.98) 0%, rgba(60, 45, 0, 0.7) 50%, transparent 100%); }
         .theme-yellow .card-video { filter: sepia(0.2) saturate(1.3) brightness(1.05); }
-        .theme-yellow .card-content h3 { 
-            color: #fff; 
-            text-shadow: 0 0 25px rgba(255, 215, 0, 0.8); 
-        }
-        .theme-yellow .card-content p.accent { 
-            color: #FFD700; 
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
+        .theme-yellow .card-content h3 { color: #fff; text-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+        .theme-yellow .card-content p.accent { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
 
-        /* 2. SUKHMANI (Dark Rust/Saffron) */
-        .theme-orange { 
-            box-shadow: 0 30px 80px -10px rgba(255, 138, 28, 0.623); 
-        }
-        .theme-orange .card-content { 
-            text-align: right; align-items: flex-end; 
-            /* Deep Burnt Orange Gradient */
-            background: linear-gradient(to top , rgba(70, 25, 0, 0.98) 0%, rgba(70, 25, 0, 0.7) 50%, transparent 100%); 
-        }
+        /* 2. SUKHMANI (Orange Glow) */
+        .theme-orange { box-shadow: 0 30px 80px -10px rgba(255, 100, 0, 0.3); }
+        .theme-orange .card-content { text-align: right; align-items: flex-end; background: linear-gradient(to top , rgba(70, 25, 0, 0.98) 0%, rgba(70, 25, 0, 0.7) 50%, transparent 100%); }
         .theme-orange .card-video { filter: sepia(0.4) saturate(1.2) brightness(1.0); }
-        .theme-orange .card-content h3 { 
-            color: #ffffff; 
-            text-shadow: 0 0 30px rgba(255, 140, 0, 0.8);
-        }
-        .theme-orange .card-content p.accent { 
-            color: #FFAE42; 
-            text-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
-        }
+        .theme-orange .card-content h3 { color: #ffffff; text-shadow: 0 0 30px rgba(255, 140, 0, 0.8); }
+        .theme-orange .card-content p.accent { color: #FFAE42; text-shadow: 0 0 15px rgba(255, 140, 0, 0.5); }
 
-        /* 3. JAGO (Dark Purple) */
-        .theme-jago { 
-            box-shadow: 0 30px 80px -10px rgba(160, 30, 255, 0.4); 
-        }
-        .theme-jago .card-content { 
-            /* Deep Royal Purple Gradient */
-            background: linear-gradient(to top, rgba(30, 0, 50, 0.98) 0%, rgba(30, 0, 50, 0.7) 50%, transparent 100%); 
-        }
+        /* 3. JAGO (Purple Glow) */
+        .theme-jago { box-shadow: 0 30px 80px -10px rgba(160, 30, 255, 0.4); }
+        .theme-jago .card-content { background: linear-gradient(to top, rgba(30, 0, 50, 0.98) 0%, rgba(30, 0, 50, 0.7) 50%, transparent 100%); }
         .theme-jago .card-video { filter: brightness(1.4) contrast(1.1) hue-rotate(10deg) saturate(1.2); }
-        .theme-jago .card-content h3 { 
-            color: #fff; 
-            text-shadow: 0 0 35px rgba(224, 176, 255, 0.9);
-        }
-        .theme-jago .card-content p.accent { 
-            color: #E0B0FF; 
-            text-shadow: 0 0 20px rgba(224, 176, 255, 0.6);
-        }
+        .theme-jago .card-content h3 { color: #fff; text-shadow: 0 0 35px rgba(224, 176, 255, 0.9); }
+        .theme-jago .card-content p.accent { color: #E0B0FF; text-shadow: 0 0 20px rgba(224, 176, 255, 0.6); }
 
-        /* 4. ANAND KARAJ (Dark Bronze/Gold) */
-        .theme-gold { 
-            box-shadow: 0 30px 80px -10px rgba(212, 175, 55, 0.3); 
-        }
-        .theme-gold .card-content { 
-            text-align: right; 
-            /* Dark Antique Bronze Gradient */
-            background: linear-gradient(to top , rgba(40, 30, 5, 0.98) 0%, rgba(40, 30, 5, 0.7) 50%, transparent 100%); 
-        }
+        /* 4. ANAND KARAJ (Gold Glow) */
+        .theme-gold { box-shadow: 0 30px 80px -10px rgba(212, 175, 55, 0.3); }
+        .theme-gold .card-content { text-align: right; background: linear-gradient(to top , rgba(40, 30, 5, 0.98) 0%, rgba(40, 30, 5, 0.7) 50%, transparent 100%); }
         .theme-gold .card-video { filter: sepia(0.2) brightness(1.0) contrast(1.1); }
-        .theme-gold .card-content h3 { 
-            color: #ffffff; 
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-        }
-        .theme-gold .card-content p.accent { 
-            color: #FDB931; 
-            text-shadow: 0 0 15px rgba(253, 185, 49, 0.6);
-        }
+        .theme-gold .card-content h3 { color: #ffffff; text-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
+        .theme-gold .card-content p.accent { color: #FDB931; text-shadow: 0 0 15px rgba(253, 185, 49, 0.6); }
 
         /* 5. QR (Clean) */
         .theme-qr { box-shadow: 0 30px 60px -15px rgba(255, 255, 255, 0.15); }
@@ -272,7 +231,8 @@
         @media (max-width: 768px) {
             .event-card { width: 90vw; height: 70vh; }
             .card-content { padding: 1.5rem; }
-            .title-main { font-size: 3.5rem; }
+            /* Font size adjusted for mobile readability */
+            .title-main { font-size: 2rem; line-height: 1.2; } 
             #cursor-follower { display: none; }
         }
 
@@ -319,24 +279,6 @@
 
     <!-- 2. EVENT CARDS -->
 
-    <!-- MEHNDI -->
-    <div class="event-scroll-wrapper event-wrapper">
-        <div class="event-sticky-stage">
-            <div class="event-card theme-yellow">
-                <video class="card-video" autoplay muted loop playsinline>
-                    <source src="Mehndi_Decor_Transformation.mp4" type="video/mp4">
-                </video>
-                <div class="card-content">
-                    <h3 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide mb-2">Mehndi & Haldi</h3>
-                    <p class="accent text-lg font-extrabold tracking-widest mb-4">4:00 PM - Residence</p>
-                    <p class="text-sm opacity-80 leading-relaxed max-w-xs text-gray-200">
-                        A vibrant afternoon of colors, turmeric, and henna. Join us as we kick off the celebrations with joy and laughter.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- SUKHMANI -->
     <div class="event-scroll-wrapper event-wrapper">
         <div class="event-sticky-stage">
@@ -346,8 +288,9 @@
                 </video>
                 <div class="card-content flex flex-col items-end">
                     <h3 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide mb-2">Sukhmani Sahib</h3>
-                    <p class="accent text-lg font-extrabold tracking-widest mb-1">Path da Bhog: 10:00 AM</p>
-                    <p class="accent text-sm font-medium tracking-widest mb-4 opacity-90">Lunch: 1:00 PM</p>
+                    <p class="accent text-lg font-medium tracking-widest mb-1">February 10, 2026</p>   
+                    <p class="accent text-lg font-medium tracking-widest mb-1">Path da Bhog: 10:00 AM</p>
+                    <p class="accent text-lg font-medium tracking-widest mb-4 opacity-90">Lunch: 1:00 PM</p>
                     <p class="text-sm opacity-80 leading-relaxed max-w-xs text-right text-gray-200">
                         Seeking the Almighty's blessings. The spiritual beginning to our journey, followed by Guru Ka Langar.
                     </p>
@@ -355,6 +298,27 @@
             </div>
         </div>
     </div>
+
+    <!-- MEHNDI -->
+    <div class="event-scroll-wrapper event-wrapper">
+        <div class="event-sticky-stage">
+            <div class="event-card theme-yellow">
+                <video class="card-video" autoplay muted loop playsinline>
+                    <source src="Mehndi_Decor_Transformation.mp4" type="video/mp4">
+                </video>
+                <div class="card-content">
+                    <h3 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide mb-2">Haldi</h3>
+                    <p class="accent text-lg font-medium tracking-widest mb-4">February 10, 2026</p>
+                    <p class="accent text-lg font-medium tracking-widest mb-4">4:00 PM - Residence</p>
+                    <p class="text-sm opacity-80 leading-relaxed max-w-xs text-gray-200">
+                        A vibrant afternoon of colors, turmeric, and henna. Join us as we kick off the celebrations with joy and laughter.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
 
     <!-- JAGO -->
     <div class="event-scroll-wrapper event-wrapper">
@@ -365,7 +329,7 @@
                 </video>
                 <div class="card-content">
                     <h3 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide mb-2">Jago Night</h3>
-                    <p class="accent text-lg font-medium tracking-widest mb-4">7:00 PM - The Grand Hall</p>
+                    <p class="accent text-lg font-medium tracking-widest mb-4">7:00 PM - Residence</p>
                     <p class="text-sm opacity-80 leading-relaxed max-w-xs text-gray-200">
                         Lights, dance, and tradition. The Jago arrives to light up the night sky. Get ready to dance under the stars.
                     </p>
@@ -384,10 +348,13 @@
                 <div class="card-content flex flex-col items-end">
                     <h3 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide mb-2">Anand Karaj</h3>
                     <div class="accent text-right mb-4 space-y-1">
-                        <p class="text-sm tracking-widest">Reception of Barat: 9:00 AM</p>
-                        <p class="text-lg font-extrabold tracking-widest">Anand Karaj: 11:00 AM</p>
-                        <p class="text-sm tracking-widest">Doli: 4:00 PM</p>
+                        <p class=" accent text-lg tracking-widest">Reception of Barat: 9:00 AM</p>
+                        <p class=" accent text-2xl font-bold tracking-widest">Anand Karaj: 11:00 AM</p>
+                        <p class=" accent text-lg tracking-widest">Doli: 4:00 PM</p>
                     </div>
+                    <p class="text-xs opacity-80 tracking-widest uppercase mb-4 text-right">
+                        JS Resort-1, Shampura<br>Rupanagar, Punjab-140001
+                    </p>
                     <p class="text-sm opacity-80 leading-relaxed max-w-xs text-right text-gray-200">
                         The sacred union. We seek your blessings as we take our Lavans and begin our forever.
                     </p>
@@ -405,7 +372,7 @@
                 </video>
                 <div class="card-content flex flex-col items-center justify-end">
                     <div class="qr-box">
-                    <img src="Screenshot 2025-11-22 185543.png" alt="Location QR" class="w-32 h-32">
+                        <img src="Screenshot 2025-11-22 185543.png" alt="Location QR" class="w-32 h-32">
                     </div>
                     <h3 class="text-2xl md:text-3xl font-bold uppercase tracking-wide mb-2">The Venue</h3>
                     <p class="text-center text-sm tracking-widest mb-2 font-bold">JS Resort-1</p>
@@ -429,8 +396,7 @@
             bottomImage: "WhatsApp Image 2025-11-18 at 22.42.03_8dac5feb.jpg",
             baseBrushSize: 280, 
             minBrushSize: 60,  
-            // 0.04 is fast enough to see trails disappearing smoothly
-            healSpeed: 0.04, 
+            healSpeed: 0.03, 
             idleDelay: 2000, 
         };
 
@@ -517,8 +483,6 @@
             if (disableEffects || !isLoaded) return;
             if (maskCanvas.width <= 0 || maskCanvas.height <= 0) return;
 
-            // Simply drawing the mask over with low opacity creates a perfect fade.
-            // It naturally fills holes faster than it darkens already dark areas.
             ctx.globalCompositeOperation = 'source-over';
             ctx.globalAlpha = CONFIG.healSpeed; 
             ctx.drawImage(maskCanvas, 0, 0);
@@ -655,7 +619,7 @@
         tick();
 
 
-        /* --- SCROLL LOGIC --- */
+        /* --- SCROLL LOGIC (EXPAND -> VIDEO PAUSE -> TEXT REVEAL -> FULL READ) --- */
         const lerp = (start, end, t) => start * (1 - t) + end * t;
         const heroWrapper = document.getElementById('hero-wrapper');
         const heroText = document.getElementById('hero-text');
@@ -667,6 +631,7 @@
             let heroProgress = -heroRect.top / (heroRect.height - viewportHeight);
             heroProgress = Math.max(0, Math.min(1, heroProgress));
 
+            // Hero
             if (heroProgress > 0.05) {
                 disableEffects = true;
                 canvas.style.opacity = '0';      
@@ -677,6 +642,7 @@
                 tintOverlay.style.opacity = '0';
             }
 
+            // Hero Title
             if (heroProgress < 0.1) {
                 heroText.style.opacity = 0;
                 heroText.style.transform = `translate(-50%, calc(-50% + 60px)) scale(0.95)`;
@@ -685,17 +651,15 @@
                 const t = (heroProgress - 0.1) / 0.6; 
                 const easedT = t * (2 - t); 
                 heroText.style.opacity = easedT;
-                const yOffset = lerp(60, 0, easedT);
-                const scale = lerp(0.95, 1.0, easedT);
-                const blur = lerp(12, 0, easedT);
-                heroText.style.transform = `translate(-50%, calc(-50% + ${yOffset}px)) scale(${scale})`;
-                heroText.style.filter = `blur(${blur}px)`;
+                heroText.style.transform = `translate(-50%, calc(-50% + ${lerp(60, 0, easedT)}px)) scale(${lerp(0.95, 1.0, easedT)})`;
+                heroText.style.filter = `blur(${lerp(12, 0, easedT)}px)`;
             } else {
                 heroText.style.opacity = 1;
                 heroText.style.transform = `translate(-50%, -50%) scale(1.0)`;
                 heroText.style.filter = `blur(0px)`;
             }
 
+            // Event Cards Logic
             eventWrappers.forEach(wrapper => {
                 const card = wrapper.querySelector('.event-card');
                 const text = wrapper.querySelector('.card-content');
@@ -703,8 +667,9 @@
                 let progress = -rect.top / (rect.height - viewportHeight);
                 progress = Math.max(0, Math.min(1, progress));
 
-                if (progress < 0.4) {
-                    const t = progress / 0.4;
+                // 1. EXPAND (0.0 - 0.25)
+                if (progress < 0.25) {
+                    const t = progress / 0.25;
                     const isMobile = window.innerWidth < 768;
                     const startW = isMobile ? window.innerWidth * 0.85 : 400;
                     const startH = isMobile ? window.innerHeight * 0.6 : 600;
@@ -714,17 +679,29 @@
                     card.style.transform = `none`;
                     text.style.opacity = 0;
                     text.style.transform = `translateY(30px)`;
-                } else {
+                } 
+                // 2. VIDEO ONLY PAUSE (0.25 - 0.35) -> Short pause for video
+                else if (progress < 0.35) {
                     card.style.width = '100vw';
                     card.style.height = '100vh';
-                    
-                    if (progress > 0.5) {
-                        const t = Math.min(1, (progress - 0.5) / 0.3);
-                        text.style.opacity = t;
-                        text.style.transform = `translateY(${lerp(30, 0, t)}px)`;
-                    } else {
-                        text.style.opacity = 0;
-                    }
+                    text.style.opacity = 0;
+                    text.style.transform = `translateY(30px)`;
+                }
+                // 3. TEXT REVEAL (0.35 - 0.5)
+                else if (progress < 0.5) {
+                    card.style.width = '100vw';
+                    card.style.height = '100vh';
+                    const t = (progress - 0.35) / 0.15;
+                    const easedT = Math.min(1, t * (2 - t));
+                    text.style.opacity = easedT;
+                    text.style.transform = `translateY(${lerp(30, 0, easedT)}px)`;
+                }
+                // 4. READING PAUSE (0.5 - 1.0) -> Long pause with text visible
+                else {
+                    card.style.width = '100vw';
+                    card.style.height = '100vh';
+                    text.style.opacity = 1;
+                    text.style.transform = `translateY(0px)`;
                 }
             });
         });
