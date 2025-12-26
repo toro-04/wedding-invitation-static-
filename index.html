@@ -3,783 +3,870 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Jagdeep & Tarandeep | The Wedding</title>
+    <title>Jagdeep & Tarandeep | Wedding Invitation</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💍</text></svg>">
     
-    <!-- Google Fonts: Manrope -->
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CORE STYLING --- */
-        :root {
-            --bg-color: #050505;
-            --text-color: #ffffff;
-        }
+/* --- THEME VARIABLES --- */
+:root {
+    --bg-color: #f9f7f2;
+    --card-bg: #fffbf0; 
+    --gold: #b8860b;
+    --gold-light: #e5c100;
+    --teal: #2f5d62;
+    --orange: #e65100;
+    --yellow: #fbc02d;
+    --purple: #7b1fa2;
+    --maroon: #800000;
+    --text-dark: #2c2c2c;
+    --text-light: #555555;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Manrope', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth; 
-            -webkit-font-smoothing: antialiased;
-            overscroll-behavior-y: none; 
-        }
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b8860b' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    color: var(--text-dark);
+    font-family: 'Playfair Display', serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
-        ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
+/* --- TYPOGRAPHY --- */
+.font-script { font-family: 'Great Vibes', cursive; }
+.font-royal { font-family: 'Cinzel', serif; }
 
-        /* --- HERO SECTION --- */
-        .hero-scroll-wrapper {
-            height: 300vh; 
-            position: relative;
-            background-color: var(--bg-color);
-            z-index: 20;
-        }
+/* --- ENTRANCE ANIMATIONS --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        .hero-sticky-stage {
-            position: sticky;
-            top: 0;
-            width: 100vw;
-            height: 100dvh; 
-            overflow: hidden;
-        }
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
 
-        #reveal-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            transform: scale(1.01); 
-        }
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        #tint-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            opacity: 0; 
-            z-index: 3; 
-            pointer-events: none;
-            transition: opacity 0.6s ease; 
-        }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-        #scratch-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            cursor: none;
-            /* Disables browser scroll on the canvas area */
-            touch-action: none; 
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
 
-        .landing-title-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            text-align: center;
-            pointer-events: none;
-            width: 100%;
-            padding: 0 20px;
-            opacity: 0;
-            will-change: transform, opacity, filter;
-        }
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
 
-        .title-main {
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.02em; 
-            line-height: 0.9;
-            font-size: clamp(2rem, 8vw, 7rem); 
-            word-wrap: break-word;
-        }
+/* Staggered animation classes for first page */
+.animate-item {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
 
-        .subtitle {
-            margin-top: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
-            opacity: 0.8;
-        }
+.anim-1 { animation: fadeInDown 0.8s 0.2s forwards; }
+.anim-2 { animation: fadeInScale 0.8s 0.4s forwards; }
+.anim-3 { animation: fadeIn 0.6s 0.6s forwards; }
+.anim-4 { animation: slideInLeft 0.8s 0.8s forwards; }
+.anim-5 { animation: fadeInUp 0.8s 1s forwards; }
+.anim-6 { animation: fadeInScale 0.9s 1.2s forwards; }
+.anim-7 { animation: fadeInScale 0.9s 1.4s forwards; }
+.anim-8 { animation: fadeInScale 0.9s 1.6s forwards; }
+.anim-9 { animation: fadeInUp 0.8s 1.8s forwards; }
+.anim-10 { animation: fadeIn 0.8s 2s forwards; }
 
-        #cursor-follower {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 24px;
-            height: 24px;
-            background: #eaff00;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 50;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease, opacity 0.3s ease;
-            box-shadow: 0 0 20px rgba(234, 255, 0, 0.8);
-            opacity: 0;
-        }
+/* Overflowing Floral Decorations */
+.floral-overflow {
+    position: absolute;
+    pointer-events: none;
+    z-index: 15;
+}
 
-        /* --- MOBILE SCROLL ZONE (THE FIX) --- */
-        #mobile-scroll-zone {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 15vh; /* Bottom 15% of screen is for scrolling */
-            z-index: 60;
-            /* Allow vertical scroll here */
-            touch-action: pan-y; 
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding-bottom: 20px;
-        }
-        
-        .scroll-hint-text {
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: white;
-            opacity: 0.6;
-            pointer-events: none;
-            animation: bounce 2s infinite;
-        }
+.floral-top-right {
+    top: -25px;
+    right: -30px;
+    width: 240px;
+    height: auto;
+}
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
+.floral-top-left {
+    top: -25px;
+    left: -30px;
+    width: 240px;
+    height: auto;
+    transform: scaleX(-1);
+}
 
-        /* --- EVENT CARD SYSTEM --- */
-        .event-scroll-wrapper {
-            height: 350vh; 
-            position: relative;
-            background-color: var(--bg-color);
-            z-index: 10;
-        }
+.floral-bottom-right {
+    bottom: -10px;
+    right: -10px;
+    width: 240px;
+    height: auto;
+}
 
-        .event-sticky-stage {
-            position: sticky;
-            top: 0;
-            width: 100vw;
-            height: 100dvh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+.floral-bottom-left {
+    bottom: -10px;
+    left: -10px;
+    width: 240px;
+    height: auto;
+    transform: scaleX(-1);
+}
 
-        .event-card {
-            position: relative;
-            width: 400px; 
-            height: 600px; 
-            background: #111;
-            overflow: hidden;
-            will-change: width, height, transform;
-            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
-            transition: box-shadow 0.5s ease;
-        }
+/* Large Roses Border for Wedding Pages - All 4 Corners */
+.roses-border-top-left {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 280px;
+    height: auto;
+    max-height: 350px;
+    pointer-events: none;
+    z-index: 15;
+    object-fit: contain;
+}
 
-        .card-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.95;
-            transition: filter 0.5s ease;
-        }
+.roses-border-top-right {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 280px;
+    height: auto;
+    max-height: 350px;
+    pointer-events: none;
+    z-index: 15;
+    object-fit: contain;
+    transform: scaleX(-1); /* Flip horizontally */
+}
 
-        .card-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 3rem;
-            opacity: 0; 
-            transform: translateY(30px);
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, transparent);
-            box-sizing: border-box;
-            z-index: 20;
-        }
+.roses-border-bottom-left {
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    width: 280px;
+    height: auto;
+    max-height: 350px;
+    pointer-events: none;
+    z-index: 15;
+    object-fit: contain;
+    transform: scaleY(-1); /* Flip vertically */
+}
 
-        /* --- THEMES --- */
-        .theme-yellow { box-shadow: 0 30px 80px -10px rgba(255, 200, 0, 0.25); }
-        .theme-yellow .card-content { background: linear-gradient(to top, rgba(60, 45, 0, 0.98) 0%, rgba(60, 45, 0, 0.7) 50%, transparent 100%); }
-        .theme-yellow .card-video { filter: sepia(0.2) saturate(1.3) brightness(1.05); }
-        .theme-yellow .card-content h3 { color: #fff; text-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
-        .theme-yellow .card-content p.accent { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+.roses-border-bottom-right {
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    width: 280px;
+    height: auto;
+    max-height: 350px;
+    pointer-events: none;
+    z-index: 15;
+    object-fit: contain;
+    transform: scale(-1, -1); /* Flip both horizontally and vertically */
+}
 
-        .theme-orange { box-shadow: 0 30px 80px -10px rgba(255, 100, 0, 0.3); }
-        .theme-orange .card-content { text-align: right; align-items: flex-end; background: linear-gradient(to top, rgba(70, 25, 0, 0.98) 0%, rgba(70, 25, 0, 0.7) 50%, transparent 100%); }
-        .theme-orange .card-video { filter: sepia(0.4) saturate(1.2) brightness(1.0); }
-        .theme-orange .card-content h3 { color: #ffffff; text-shadow: 0 0 30px rgba(255, 140, 0, 0.8); }
-        .theme-orange .card-content p.accent { color: #FFAE42; text-shadow: 0 0 15px rgba(255, 140, 0, 0.5); }
+/* Responsive roses */
+@media (max-width: 768px) {
+    .roses-border-top-left,
+    .roses-border-top-right,
+    .roses-border-bottom-left,
+    .roses-border-bottom-right {
+        width: 220px;
+        max-height: 280px;
+    }
+}
 
-        .theme-jago { box-shadow: 0 30px 80px -10px rgba(160, 30, 255, 0.4); }
-        .theme-jago .card-content { background: linear-gradient(to top, rgba(30, 0, 50, 0.98) 0%, rgba(30, 0, 50, 0.7) 50%, transparent 100%); }
-        .theme-jago .card-video { filter: brightness(1.4) contrast(1.1) hue-rotate(10deg) saturate(1.2); }
-        .theme-jago .card-content h3 { color: #fff; text-shadow: 0 0 35px rgba(224, 176, 255, 0.9); }
-        .theme-jago .card-content p.accent { color: #E0B0FF; text-shadow: 0 0 20px rgba(224, 176, 255, 0.6); }
+@media (max-width: 480px) {
+    .roses-border-top-left,
+    .roses-border-top-right,
+    .roses-border-bottom-left,
+    .roses-border-bottom-right {
+        width: 180px;
+        max-height: 230px;
+    }
+}
 
-        .theme-gold { box-shadow: 0 30px 80px -10px rgba(212, 175, 55, 0.3); }
-        .theme-gold .card-content { text-align: right; background: linear-gradient(to top , rgba(40, 30, 5, 0.98) 0%, rgba(40, 30, 5, 0.7) 50%, transparent 100%); }
-        .theme-gold .card-video { filter: sepia(0.2) brightness(1.0) contrast(1.1); }
-        .theme-gold .card-content h3 { color: #ffffff; text-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
-        .theme-gold .card-content p.accent { color: #FDB931; text-shadow: 0 0 15px rgba(253, 185, 49, 0.6); }
 
-        .theme-qr { box-shadow: 0 30px 60px -15px rgba(255, 255, 255, 0.15); }
-        .theme-qr .card-video { filter: grayscale(100%) brightness(0.4); }
-        .theme-qr .card-content { text-align: center; align-items: center; padding-bottom: 5rem; }
-        .qr-box { background: white; padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 0 30px rgba(255,255,255,0.3); }
+/* --- LAYOUT & SLIDER --- */
+.main-container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
-        @media (max-width: 768px) {
-            .event-card { width: 90vw; height: 70vh; }
-            .card-content { padding: 1.5rem; }
-            .title-main { font-size: clamp(1.8rem, 8vw, 4rem); } 
-            #cursor-follower { display: none; }
-        }
-        @media (min-width: 769px) {
-            #mobile-scroll-zone { display: none; } /* Hide on desktop */
-        }
+.section {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-        .loader {
-            position: fixed;
-            inset: 0;
-            background: #000000;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            transition: opacity 0.8s ease-out;
-            pointer-events: all;
-        }
-        
-        .loader-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: 1px solid #eaff00;
-            color: #eaff00;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            cursor: pointer;
-            pointer-events: none;
-        }
-    </style>
+.section.active { opacity: 1; }
+
+/* --- ROYAL CARD DESIGN (DEFAULT) --- */
+.royal-card {
+    background: linear-gradient(135deg, #ffffff 0%, #fffef9 100%);
+    width: 90%;
+    max-width: 450px;
+    max-height: 88vh;
+    padding: 2.5rem 2rem;
+    position: relative;
+    box-shadow: 
+        0 20px 60px rgba(0,0,0,0.15),
+        0 0 0 1px rgba(184, 134, 11, 0.1);
+    border: 1px solid #e0d0a0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* CUSTOM HEIGHT FOR PAGE 2 (RITUALS) - SHORTER & COMPACT */
+#p2 .royal-card {
+    max-height: 75vh;
+    padding: 2rem 1.8rem;
+}
+
+/* CUSTOM HEIGHT FOR PAGE 3 (WEDDING) - TALLER FOR ROSES */
+#p3 .royal-card {
+    max-height: 92vh;
+    padding: 2.8rem 2rem;
+}
+
+/* CUSTOM HEIGHT FOR PAGE 4 (RSVP) - TALLER */
+#p4 .royal-card {
+    max-height: 90vh;
+    padding: 2.5rem 2rem;
+}
+
+/* Custom scrollbar */
+.royal-card::-webkit-scrollbar {
+    width: 5px;
+}
+.royal-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+.royal-card::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 3px;
+}
+
+/* Double Gold Frame */
+.royal-card::before {
+    content: '';
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    right: 10px; 
+    bottom: 10px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+    z-index: 1;
+}
+.royal-card::after {
+    content: '';
+    position: absolute;
+    top: 16px; 
+    left: 16px; 
+    right: 16px; 
+    bottom: 16px;
+    border: 2px solid var(--gold);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* FLORAL CORNER DECORATIONS */
+.floral-corner {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    z-index: 10;
+    pointer-events: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.floral-tl {
+    top: 0;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3C!-- Leaves --%3E%3Cpath d='M10,80 Q15,60 30,50 Q40,45 50,50 Q35,65 30,80 Z' fill='%232f5d62' opacity='0.7'/%3E%3Cpath d='M50,10 Q65,15 75,30 Q80,40 75,50 Q60,35 50,30 Z' fill='%232f5d62' opacity='0.6'/%3E%3Cpath d='M5,50 Q10,35 20,25 Q28,20 35,23 Q25,35 20,50 Z' fill='%234a7c7f' opacity='0.5'/%3E%3C!-- Roses --%3E%3Ccircle cx='45' cy='45' r='12' fill='%23e8b4a8' opacity='0.8'/%3E%3Ccircle cx='42' cy='42' r='8' fill='%23f5d5c8' opacity='0.9'/%3E%3Ccircle cx='40' cy='40' r='5' fill='%23fce8de'/%3E%3Ccircle cx='20' cy='70' r='10' fill='%23e8b4a8' opacity='0.7'/%3E%3Ccircle cx='18' cy='68' r='6' fill='%23f5d5c8' opacity='0.8'/%3E%3Ccircle cx='70' cy='20' r='9' fill='%23e8b4a8' opacity='0.7'/%3E%3Ccircle cx='68' cy='18' r='5' fill='%23f5d5c8' opacity='0.8'/%3E%3C!-- Gold accents --%3E%3Cpath d='M35,55 Q40,50 45,55' stroke='%23b8860b' stroke-width='1' fill='none' opacity='0.4'/%3E%3Cpath d='M55,35 Q50,40 55,45' stroke='%23b8860b' stroke-width='1' fill='none' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+.floral-tr {
+    top: 0;
+    right: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3C!-- Leaves --%3E%3Cpath d='M190,80 Q185,60 170,50 Q160,45 150,50 Q165,65 170,80 Z' fill='%232f5d62' opacity='0.7'/%3E%3Cpath d='M150,10 Q135,15 125,30 Q120,40 125,50 Q140,35 150,30 Z' fill='%232f5d62' opacity='0.6'/%3E%3Cpath d='M195,50 Q190,35 180,25 Q172,20 165,23 Q175,35 180,50 Z' fill='%234a7c7f' opacity='0.5'/%3E%3C!-- Roses --%3E%3Ccircle cx='155' cy='45' r='12' fill='%23e8b4a8' opacity='0.8'/%3E%3Ccircle cx='158' cy='42' r='8' fill='%23f5d5c8' opacity='0.9'/%3E%3Ccircle cx='160' cy='40' r='5' fill='%23fce8de'/%3E%3Ccircle cx='180' cy='70' r='10' fill='%23e8b4a8' opacity='0.7'/%3E%3Ccircle cx='182' cy='68' r='6' fill='%23f5d5c8' opacity='0.8'/%3E%3Ccircle cx='130' cy='20' r='9' fill='%23e8b4a8' opacity='0.7'/%3E%3Ccircle cx='132' cy='18' r='5' fill='%23f5d5c8' opacity='0.8'/%3E%3C/svg%3E");
+}
+
+.floral-bl {
+    bottom: 0;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3C!-- Leaves --%3E%3Cpath d='M10,120 Q15,140 30,150 Q40,155 50,150 Q35,135 30,120 Z' fill='%232f5d62' opacity='0.7'/%3E%3Cpath d='M50,190 Q65,185 75,170 Q80,160 75,150 Q60,165 50,170 Z' fill='%232f5d62' opacity='0.6'/%3E%3Cpath d='M5,150 Q10,165 20,175 Q28,180 35,177 Q25,165 20,150 Z' fill='%234a7c7f' opacity='0.5'/%3E%3C!-- Roses --%3E%3Ccircle cx='45' cy='155' r='12' fill='%23e8b4a8' opacity='0.8'/%3E%3Ccircle cx='42' cy='158' r='8' fill='%23f5d5c8' opacity='0.9'/%3E%3Ccircle cx='40' cy='160' r='5' fill='%23fce8de'/%3E%3Ccircle cx='20' cy='130' r='10' fill='%23e8b4a8' opacity='0.7'/%3E%3Ccircle cx='18' cy='132' r='6' fill='%23f5d5c8' opacity='0.8'/%3E%3Ccircle cx='70' cy='180' r='9' fill='%23e8b4a8' opacity='0.7'/%3E%3Ccircle cx='68' cy='182' r='5' fill='%23f5d5c8' opacity='0.8'/%3E%3C/svg%3E");
+}
+
+.floral-br {
+    bottom: 0;
+    right: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3C!-- Leaves --%3E%3Cpath d='M190,120 Q185,140 170,150 Q160,155 150,150 Q165,135 170,120 Z' fill='%232f5d62' opacity='0.7'/%3E%3Cpath d='M150,190 Q135,185 125,170 Q120,160 125,150 Q140,165 150,170 Z' fill='%232f5d62' opacity='0.6'/%3E%3Cpath d='M195,150 Q190,165 180,175 Q172,180 165,177 Q175,165 180,150 Z' fill='%234a7c7f' opacity='0.5'/%3E%3C!-- Roses --%3E%3Ccircle cx='155' cy='155' r='12' fill='%23e8b4a8' opacity='0.8'/%3E%3Ccircle cx='158' cy='158' r='8' fill='%23f5d5c8' opacity='0.9'/%3E%3Ccircle cx='160' cy='160' r='5' fill='%23fce8de'/%3E%3Ccircle cx='180' cy='130' r='10' fill='%23e8b4a8' opacity='0.7'/%3E%3Ccircle cx='182' cy='132' r='6' fill='%23f5d5c8' opacity='0.8'/%3E%3Ccircle cx='130' cy='180' r='9' fill='%23e8b4a8' opacity='0.7'/%3E%3Ccircle cx='132' cy='182' r='5' fill='%23f5d5c8' opacity='0.8'/%3E%3C/svg%3E");
+}
+
+/* Content Container */
+.card-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Simple divider */
+.divider-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12px 0;
+    width: 100%;
+}
+.divider-line { 
+    height: 2px; 
+    background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent); 
+    flex: 1;
+    max-width: 60px;
+}
+.divider-icon { 
+    color: var(--gold); 
+    font-size: 1.1rem;
+    margin: 0 10px;
+}
+
+/* Guru Granth Sahib Palki Illustration */
+.palki-illustration {
+    width: 140px;
+    height: auto;
+    margin: 10px auto 15px;
+}
+
+/* --- VIDEO FRAME --- */
+.video-frame {
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+    border: 3px double var(--gold);
+    padding: 3px;
+    background: white;
+    margin: 15px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+.video-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- HERO LAYERS --- */
+.hero-layer {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+}
+
+/* --- MUSIC BTN --- */
+.music-btn {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;
+    z-index: 100;
+    width: 50px; 
+    height: 50px;
+    background: rgba(255,255,255,0.95);
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    color: var(--gold);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(184, 134, 11, 0.3);
+}
+
+.music-btn.playing {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* --- VENUE TAG --- */
+.venue-tag {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, var(--teal), #1e4548);
+    color: white;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    box-shadow: 0 4px 10px rgba(47, 93, 98, 0.25);
+}
+
+.venue-icon {
+    margin-right: 6px;
+    font-size: 0.8rem;
+}
+
+/* --- MOBILE OPTIMIZATION --- */
+@media (max-width: 768px) {
+    .royal-card { 
+        width: 92%; 
+        max-width: 420px;
+        padding: 2.5rem 1.6rem;
+        max-height: 88vh;
+    }
+    #p2 .royal-card {
+        max-height: 80vh;
+    }
+    #p3 .royal-card {
+        max-height: 90vh;
+    }
+    .floral-corner {
+        width: 100px;
+        height: 100px;
+    }
+    .floral-overflow {
+        width: 180px;
+    }
+    
+    .palki-illustration {
+        width: 120px;
+    }
+    .music-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
+    }
+    .video-frame {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .royal-card {
+        padding: 2.2rem 1.3rem;
+        width: 94%;
+    }
+    
+    .floral-corner {
+        width: 85px;
+        height: 85px;
+    }
+    .floral-overflow {
+        width: 150px;
+    }
+    
+    
+}
+
+@media (max-width: 380px) {
+    .royal-card {
+        padding: 2rem 1.1rem;
+    }
+    .floral-corner {
+        width: 70px;
+        height: 70px;
+    }
+    .palki-illustration {
+        width: 100px;
+    }
+}
+
+#p2 .royal-card {
+        max-height: 92vh !important;
+        min-height: auto;
+        padding: 1.5rem 1.5rem !important;
+    }
+    #p3 .royal-card {
+        min-height: 58vh;
+        max-height: 92vh;
+       
+    }
+</style>
+
 </head>
-<body>
+<body onclick="handleTap(event)">
 
-    <!-- LOADER -->
-    <div class="loader" id="loader">
-        <div class="w-10 h-10 border-2 border-t-transparent border-[#eaff00] rounded-full animate-spin"></div>
-        <div class="mt-4 text-xs tracking-[0.3em] uppercase text-[#eaff00] animate-pulse" id="loading-text">Loading Vision</div>
-        <div class="mt-2 text-[10px] text-gray-500" id="loading-status">Initializing...</div>
-        <div class="loader-btn" id="enter-btn">Click to Enter</div>
+    <!-- AUDIO -->
+    <audio id="bg-music" loop>
+        <source src="./WhatsApp Video 2025-12-26 at 3.10.21 PM.mp3" type="audio/mp3">
+    </audio>
+    <div class="music-btn playing" onclick="toggleMusic(event)">
+        <i class="fas fa-music"></i>
     </div>
 
-    <!-- Mobile Scroll Zone (Bottom 15%) -->
-    <div id="mobile-scroll-zone">
-        <span class="scroll-hint-text">Touch Here to Scroll</span>
-    </div>
+    <!-- MAIN SLIDER -->
+    <div class="main-container" id="slider">
 
-    <div id="cursor-follower"></div>
-
-    <!-- 1. HERO SECTION -->
-    <div class="hero-scroll-wrapper" id="hero-wrapper">
-        <div class="hero-sticky-stage">
-            <img id="reveal-layer" src="" alt="Reveal Layer">
-            <div id="tint-overlay"></div>
-            <canvas id="scratch-canvas"></canvas>
-
-            <div class="landing-title-container" id="hero-text">
-                <h1 class="title-main">Jagdeep<br>&<br>Tarandeep</h1>
-                <div class="subtitle">February 11, 2026 &bull; Chandigarh</div>
+        <!-- PAGE 1: COVER WITH STAGGERED ANIMATIONS -->
+        <section class="section active" id="p1">
+            <div class="hero-layer pointer-events-none">
+                <img id="reveal-layer" src="./Screenshot 2025-12-26 155900.jpg" class="w-full h-full object-cover opacity-20" alt="Background">
             </div>
-        </div>
-    </div>
+            
+            <div class="royal-card z-10">
+                <!-- Floral Corners -->
+            <img src="./topright.svg" alt="Floral" class="floral-overflow floral-top-right">
+            <img src="./topright.svg" alt="Floral" class="floral-overflow floral-top-left">
+            <img src="./bottomright.svg" alt="Floral" class="floral-overflow floral-bottom-right">
+            <img src="./bottomright.svg" alt="Floral" class="floral-overflow floral-bottom-left">
 
-    <!-- 2. EVENT CARDS -->
-
-    <!-- MEHNDI -->
-    <div class="event-scroll-wrapper event-wrapper">
-        <div class="event-sticky-stage">
-            <div class="event-card theme-yellow">
-                <video class="card-video" autoplay muted loop playsinline>
-                    <source src="Mehndi.mp4" type="video/mp4">
-                </video>
                 <div class="card-content">
-                    <h3 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide mb-2">Mehndi & Haldi</h3>
-                    <p class="accent text-lg font-medium tracking-widest mb-4">4:00 PM - Residence</p>
-                    <p class="text-sm opacity-80 leading-relaxed max-w-xs text-gray-200">
-                        A vibrant afternoon of colors, turmeric, and henna. Join us as we kick off the celebrations with joy and laughter.
-                    </p>
+                    <div class="text-[#2f5d62] text-4xl mb-2 font-serif animate-item anim-1">ੴ</div>
+                    
+                    <h2 class="font-royal text-[#b8860b] text-xs tracking-[0.4em] uppercase mb-4 animate-item anim-2">Wedding Invitation</h2>
+                    
+                    <div class="divider-ornament animate-item anim-3">
+                        <div class="divider-line"></div>
+                        <div class="divider-icon">❦</div>
+                        <div class="divider-line"></div>
+                    </div>
+
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mb-1 animate-item anim-4"> Sardar Nirmal Singh </p>
+                    <p class="text-[10px] text-gray-400 mb-6 animate-item anim-5">(H/O Mrs. Charanjeet Kaur)</p>
+
+                    <p class="font-serif italic text-gray-600 mb-6 text-sm animate-item anim-6">Cordially invites you to the wedding<br>of their daughter</p>
+
+                    <h1 class="font-script text-5xl text-[#2f5d62] mb-1 animate-item anim-7">Jagdeep</h1>
+                    <p class="font-serif text-[#b8860b] text-xl animate-item anim-8">&</p>
+                    <h1 class="font-script text-5xl text-[#2f5d62] mb-6 animate-item anim-7">Tarandeep</h1>
+
+                    <div class="border-t border-b border-[#b8860b] py-2 px-8 mt-2 inline-block animate-item anim-9">
+                        <p class="font-royal text-lg font-bold text-gray-700">11 . 02 . 2026</p>
+                    </div>
+                    
+                    <p class="text-[10px] text-gray-400 mt-8 animate-pulse uppercase tracking-widest animate-item anim-10">Tap to Open</p>
                 </div>
+            </div>
+        </section>
+
+        
+       <!-- PAGE 2: PRE-WEDDING RITUALS - REDESIGNED -->
+<section class="section" id="p2">
+    <div class="royal-card">
+        <!-- Overflowing Floral Decorations -->
+        <img src="./topright.svg" alt="Floral" class="floral-overflow floral-top-right">
+        <img src="./topright.svg" alt="Floral" class="floral-overflow floral-top-left">
+        <img src="./bottomright.svg" alt="Floral" class="floral-overflow floral-bottom-right">
+        <img src="./bottomright.svg" alt="Floral" class="floral-overflow floral-bottom-left">
+
+        <div class="card-content">
+            <!-- Palki Sahib PNG -->
+            <div class="palki-illustration" style="margin: 0 auto -70px; text-align: center;">
+                <img src="./Screenshot 2025-12-26 155900.jpg" alt="Palki Sahib" style="width: 130px; height: auto; display: inline-block;">
+            </div>
+
+            <!-- Royal Ornamental Border Top -->
+            <div style="margin: 0 40px 8px 50px; text-align: center;">
+                <img src="./border.png" alt="Border" style="width: 100%; max-width: 300px; height: auto; filter: brightness(0) saturate(100%) invert(55%) sepia(85%) saturate(450%) hue-rotate(5deg);">
+            </div>
+
+            <h2 class="font-royal text-2xl text-[#b8860b] font-bold" style="letter-spacing: 4px; margin-bottom: 5px; margin-top: -60px;">RITUALS</h2>
+            <p class="font-serif text-[#2f5d62] text-sm" style="margin-bottom: 12px;">Tuesday , 10 December </p>
+
+            <!-- Event List with Dotted Lines -->
+            <div style="width: 100%; margin: 12px 0; padding: 0 20px;">
+                <!-- Sukhmani Sahib Path -->
+                <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px dotted rgba(184, 134, 11, 0.4);">
+                    <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic;">Sukhmani Sahib</span>
+                    <span style="flex: 0 0 auto; padding: 0 8px; color: #b8860b; font-size: 0.65rem; letter-spacing: 1px;">..................</span>
+                    <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic; font-weight: 600;">10:00 AM</span>
+                </div>
+
+                <!-- Haldi -->
+                <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px dotted rgba(184, 134, 11, 0.4);">
+                    <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic;">Haldi</span>
+                    <span style="flex: 0 0 auto; padding: 0 8px; color: #b8860b; font-size: 0.65rem; letter-spacing: 1px;">..................</span>
+                    <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic; font-weight: 600;">4:00 PM</span>
+                </div>
+
+                <!-- Jago Night -->
+                <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0;">
+                    <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic;">Jago Night</span>
+                    <span style="flex: 0 0 auto; padding: 0 8px; color: #b8860b; font-size: 0.65rem; letter-spacing: 1px;">..................</span>
+                    <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic; font-weight: 600;">7:00 PM</span>
+                </div>
+            </div>
+
+            <!-- Royal Ornamental Border Bottom (Rotated 180°) -->
+            <div style="margin: -40px 40px -50px 50px; text-align: center;">
+                <img src="./border.png" alt="Border" style="width: 100%; max-width: 300px; height: auto; transform: rotate(180deg); filter: brightness(0) saturate(100%) invert(55%) sepia(85%) saturate(450%) hue-rotate(5deg);">
+            </div>
+
+            <div class="venue-tag" style="margin-bottom: 40px; ;">
+                <span class="venue-icon">📍</span>
+                <span>RESIDENCE-CHOTI GANDHO</span>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- SUKHMANI -->
-    <div class="event-scroll-wrapper event-wrapper">
-        <div class="event-sticky-stage">
-            <div class="event-card theme-orange">
-                <video class="card-video" autoplay muted loop playsinline>
-                    <source src="akal.mp4" type="video/mp4">
-                </video>
-                <div class="card-content flex flex-col items-end">
-                    <h3 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide mb-2">Sukhmani Sahib</h3>
-                    <p class="accent text-lg font-medium tracking-widest mb-1">Path da Bhog: 10:00 AM</p>
-                    <p class="accent text-sm font-medium tracking-widest mb-4 opacity-90">Lunch: 1:00 PM</p>
-                    <p class="text-sm opacity-80 leading-relaxed max-w-xs text-right text-gray-200">
-                        Seeking the Almighty's blessings. The spiritual beginning to our journey, followed by Guru Ka Langar.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- JAGO -->
-    <div class="event-scroll-wrapper event-wrapper">
-        <div class="event-sticky-stage">
-            <div class="event-card theme-jago">
-                <video class="card-video" autoplay muted loop playsinline>
-                    <source src="jago.mp4" type="video/mp4">
-                </video>
+
+
+
+        <!-- PAGE 3: THE WEDDING (Feb 11) -->
+        <section class="section" id="p3">
+            <div class="royal-card">
+                <!-- Floral Corners -->
+              <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-left">
+            <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-right">
+            <img src="./rosesborder1.png" alt="Roses" class="roses-border-bottom-left">
+            <img src="./rosesborder1.png" alt="Roses" class="roses-border-bottom-right">
+               
                 <div class="card-content">
-                    <h3 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide mb-2">Jago Night</h3>
-                    <p class="accent text-lg font-medium tracking-widest mb-4">7:00 PM - The Grand Hall</p>
-                    <p class="text-sm opacity-80 leading-relaxed max-w-xs text-gray-200">
-                        Lights, dance, and tradition. The Jago arrives to light up the night sky. Get ready to dance under the stars.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <h2 class="font-script text-4xl text-[#b8860b] mb-1">Anand Karaj</h2>
+                    <p class="font-serif text-[#2f5d62] text-sm mb-4">Wednesday, 11th February 2026</p>
 
-    <!-- WEDDING -->
-    <div class="event-scroll-wrapper event-wrapper">
-        <div class="event-sticky-stage">
-            <div class="event-card theme-gold">
-                <video class="card-video" autoplay muted loop playsinline>
-                    <source src="wedding.mp4" type="video/mp4">
-                </video>
-                <div class="card-content flex flex-col items-end">
-                    <h3 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide mb-2">Anand Karaj</h3>
-                    <div class="accent text-right mb-4 space-y-1">
-                        <p class="text-sm tracking-widest">Reception of Barat: 10:00 AM</p>
-                        <p class="text-lg font-bold tracking-widest">Anand Karaj: 11:00 AM</p>
-                        <p class="text-sm tracking-widest">Doli: 4:00 PM</p>
+                    <!-- Wedding Video inside Frame -->
+                    <div class="video-frame">
+                        <video autoplay muted loop playsinline webkit-playsinline>
+                            <source src="./wedding.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <p class="text-xs opacity-80 tracking-widest uppercase mb-4 text-right">
-                        JS Resort-1, Shampura<br>Rupanagar, Punjab-140001
-                    </p>
-                    <p class="text-sm opacity-80 leading-relaxed max-w-xs text-right text-gray-200">
-                        The sacred union. We seek your blessings as we take our Lavans and begin our forever.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- QR -->
-    <div class="event-scroll-wrapper event-wrapper">
-        <div class="event-sticky-stage">
-            <div class="event-card theme-qr">
-                <video class="card-video" autoplay muted loop playsinline>
-                    <source src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_25fps.mp4" type="video/mp4">
-                </video>
-                <div class="card-content flex flex-col items-center justify-end">
-                    <div class="qr-box">
-                        <img src="Screenshot 2025-11-22 185543.png" alt="Location QR" class="w-32 h-32">
+                    <div class="w-full mt-4 text-left px-2">
+                        <div class="flex justify-between mb-3 border-b border-dashed border-[#b8860b] pb-2">
+                            <span class="font-royal text-sm text-[#2f5d62]">Barat Reception</span>
+                            <span class="font-bold text-[#b8860b]">9:00 AM</span>
+                        </div>
+                        <div class="flex justify-between mb-3 border-b border-dashed border-[#b8860b] pb-2">
+                            <span class="font-royal text-sm text-[#2f5d62] font-bold">Anand Karaj</span>
+                            <span class="font-bold text-[#b8860b] text-lg">11:00 AM</span>
+                        </div>
+                        <div class="flex justify-between mb-3 border-b border-dashed border-[#b8860b] pb-2">
+                            <span class="font-royal text-sm text-[#2f5d62]">Lunch</span>
+                            <span class="font-bold text-[#b8860b]">1:00 PM</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-royal text-sm text-[#2f5d62]">Doli</span>
+                            <span class="font-bold text-[#b8860b]">4:00 PM</span>
+                        </div>
                     </div>
-                    <h3 class="text-2xl md:text-3xl font-bold uppercase tracking-wide mb-2">The Venue</h3>
-                    <p class="text-center text-sm tracking-widest mb-2 font-bold">JS Resort-1</p>
-                    <p class="text-center text-xs opacity-70 tracking-widest uppercase max-w-xs">
-                        Shampura, Rupanagar<br>Punjab - 140001
-                    </p>
-                    <p class="text-[10px] opacity-50 mt-4 tracking-widest">SCAN FOR DIRECTIONS</p>
+
+                    <div class="venue-tag">
+                        <span class="venue-icon">📍</span>
+                        <span>JS RESORT-1</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div style="height: 50vh; display:flex; justify-content:center; align-items:center; background:#0a0a0a;">
-        <p class="opacity-30 tracking-[0.5em] text-xs text-white">J & T &bull; 2026</p>
+        <!-- PAGE 4: RSVP -->
+        <section class="section" id="p4">
+            <div class="royal-card">
+                <!-- Floral Corners -->
+              <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-left">
+            <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-right">
+            <img src="./rosesborder1.png" alt="Roses" class="roses-border-bottom-left">
+            <img src="./rosesborder1.png" alt="Roses" class="roses-border-bottom-right">
+               
+
+                <div class="card-content">
+                    <h2 class="font-royal text-2xl text-[#2f5d62] mb-4">Venue & RSVP</h2>
+                    
+                    <!-- Map / QR Video Placeholder -->
+                    <div class="video-frame" style="height: 180px;">
+                        <video autoplay muted loop playsinline webkit-playsinline>
+                            <source src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_25fps.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="text-center mb-4">
+                        <p class="font-bold text-[#2f5d62]">JS Resort-1</p>
+                        <p class="text-xs text-gray-600">Shampura, Rupanagar, Punjab</p>
+                        <a href="https://maps.app.goo.gl/hyvYnoedAVztojsRA" target="_blank" class="text-[10px] text-[#b8860b] underline mt-1 block">VIEW MAP</a>
+                    </div>
+
+                    <div class="divider-ornament">
+                        <div class="divider-line"></div>
+                        <div class="divider-icon">❦</div>
+                        <div class="divider-line"></div>
+                    </div>
+
+                    <p class="text-xs font-bold text-[#b8860b] tracking-widest uppercase mb-1">With Best Compliments</p>
+                    <p class="font-royal text-lg text-[#2f5d62] mb-6">All Relatives & Friends</p>
+
+                    <div class="bg-[#f9f9f9] border border-[#e0d0a0] p-3 rounded-lg w-full mb-4">
+                        <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">RSVP</p>
+                        <a href="tel:+919350904259" class="font-royal text-lg text-[#2f5d62] block">+91 9350904259</a>
+                        <a href="tel:+918800102547" class="font-royal text-lg text-[#2f5d62] block">+91 8800102547</a>
+                        <a href="tel:+919811787448" class="font-royal text-lg text-[#2f5d62] block">+91 9811787448</a>
+                    </div>             
+                    <div class="mt-6 text-[10px] text-gray-400 cursor-pointer hover:text-[#b8860b]" onclick="goToStart(event)">
+                        <i class="fas fa-redo"></i> START OVER
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <script>
         /* CONFIGURATION */
         const CONFIG = {
-            topImage: "WhatsApp Image 2025-11-18 at 22.42.03_afba304a.jpg", 
-            bottomImage: "WhatsApp Image 2025-11-18 at 22.42.03_8dac5feb.jpg",
-            baseBrushSize: 280, 
-            minBrushSize: 60,  
-            healSpeed: 0.03, 
-            idleDelay: 2000, 
+            bottomImage: "./WhatsApp Image 2025-11-18 at 22.42.03_8dac5feb.jpg" 
         };
 
-        /* --- LOADER --- */
-        const loader = document.getElementById('loader');
-        const statusText = document.getElementById('loading-status');
-        const enterBtn = document.getElementById('enter-btn');
-        let assetsLoaded = 0;
-        const totalAssets = 7; 
+        // --- NAVIGATION LOGIC ---
+        let currentIndex = 0;
+        const sections = document.querySelectorAll('.section');
+        const slider = document.getElementById('slider');
+        const totalSlides = sections.length;
 
-        function checkLoadStatus() {
-            assetsLoaded++;
-            statusText.innerText = `Loading Assets (${assetsLoaded}/${totalAssets})`;
-            if (assetsLoaded >= totalAssets) {
-                launchSite();
-            }
-        }
-
-        function launchSite() {
-            if (loader.style.opacity === '0') return;
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none'; 
-                startExperience();
-            }, 800);
-        }
-
-        const videos = document.querySelectorAll('video');
-        videos.forEach(vid => {
-            if (vid.readyState >= 3) {
-                checkLoadStatus();
-            } else {
-                vid.addEventListener('canplaythrough', checkLoadStatus, { once: true });
-                vid.addEventListener('error', () => {
-                    console.warn("Video failed:", vid.currentSrc);
-                    checkLoadStatus();
-                }, { once: true });
-            }
-        });
-
-        const img1 = new Image(); img1.src = CONFIG.topImage;
-        img1.onload = checkLoadStatus; img1.onerror = checkLoadStatus;
-
-        const img2 = new Image(); img2.src = CONFIG.bottomImage;
-        img2.onload = checkLoadStatus; img2.onerror = checkLoadStatus;
-
-        setTimeout(() => {
-            if (loader.style.opacity !== '0') {
-                statusText.innerText = "Ready to start";
-                enterBtn.style.opacity = '1';
-                enterBtn.style.pointerEvents = 'all';
-                enterBtn.onclick = launchSite;
-            }
-        }, 8000);
-
-        function forcePlayVideos() {
-            videos.forEach(vid => {
-                if (vid.paused) {
-                    vid.play().catch(e => { });
-                }
-            });
-        }
-        setInterval(forcePlayVideos, 2000);
-
-        /* --- CANVAS ENGINE --- */
-        const canvas = document.getElementById('scratch-canvas');
-        const ctx = canvas.getContext('2d', { willReadFrequently: true });
-        const maskCanvas = document.createElement('canvas');
-        const maskCtx = maskCanvas.getContext('2d');
-        const tintOverlay = document.getElementById('tint-overlay');
-        
-        let isLoaded = false;
-        let isImageBroken = false;
-        let disableEffects = false; 
-        let currentBrushSize = CONFIG.baseBrushSize;
-        let mouse = { x: -1000, y: -1000 };
-        let lastMouse = { x: -1000, y: -1000 };
-        let lastInteractionTime = Date.now();
-        
-        let projectile = {
-            active: false,
-            x: 0, y: 0,
-            vx: 0, vy: 0,
-            life: 0, maxLife: 0,
-            wobble: 0
-        };
-
-        function startExperience() {
-            isLoaded = true;
-            resizeCanvas();
-            tick();
-            forcePlayVideos(); 
-        }
-
-        function resizeCanvas() {
-            const w = window.innerWidth;
-            const h = window.innerHeight;
-            if (w === 0 || h === 0) return;
-
-            canvas.width = w;
-            canvas.height = h;
-            maskCanvas.width = w;
-            maskCanvas.height = h;
-            if(isLoaded) prepareMaskAndDraw(); 
-        }
-
-        function prepareMaskAndDraw() {
-            if(!isLoaded) return;
+        function updateSlide() {
+            slider.style.transform = `translateY(-${currentIndex * 100}vh)`;
             
-            if (isImageBroken || !img1.width || !img1.height) {
-                maskCtx.fillStyle = '#111111';
-                maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
-            } else {
-                try {
-                    const hRatio = canvas.width / img1.width;
-                    const vRatio = canvas.height / img1.height;
-                    const ratio = Math.max(hRatio, vRatio);
-                    const cx = (canvas.width - img1.width * ratio) / 2;
-                    const cy = (canvas.height - img1.height * ratio) / 2;
-                    maskCtx.clearRect(0, 0, maskCanvas.width, maskCanvas.height);
-                    maskCtx.filter = 'grayscale(100%)'; 
-                    maskCtx.drawImage(img1, 0, 0, img1.width, img1.height, cx, cy, img1.width * ratio, img1.height * ratio);
-                    maskCtx.filter = 'none';
-                } catch (e) {
-                    maskCtx.fillStyle = '#111111';
-                    maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
-                }
-            }
-            drawFullCover();
-        }
-
-        function drawFullCover() {
-            if (maskCanvas.width > 0 && maskCanvas.height > 0) {
-                ctx.globalCompositeOperation = 'source-over';
-                ctx.globalAlpha = 1.0;
-                ctx.drawImage(maskCanvas, 0, 0);
-            }
-        }
-
-        function healCanvas() {
-            if (disableEffects || !isLoaded) return;
-            if (maskCanvas.width <= 0 || maskCanvas.height <= 0) return;
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.globalAlpha = CONFIG.healSpeed; 
-            ctx.drawImage(maskCanvas, 0, 0);
-            ctx.globalAlpha = 1.0;
-        }
-
-        const bottomImgElement = document.getElementById('reveal-layer');
-        if(bottomImgElement) bottomImgElement.src = CONFIG.bottomImage;
-        
-        window.addEventListener('resize', resizeCanvas);
-
-        /* --- INTERACTIONS --- */
-        const updateMouse = (x, y) => {
-            if (disableEffects) return; 
-            const now = Date.now();
-            lastInteractionTime = now;
-            projectile.active = false; 
-            lastMouse.x = mouse.x;
-            lastMouse.y = mouse.y;
-            mouse.x = x;
-            mouse.y = y;
-            drawBrush(lastMouse, mouse);
-        };
-
-        window.addEventListener('mousemove', e => updateMouse(e.clientX, e.clientY));
-        
-        // TOUCH EVENT HANDLING FOR MOBILE DRAWING
-        window.addEventListener('touchmove', e => {
-            // Check if touch is NOT in the scroll zone
-            // Get window height
-            const h = window.innerHeight;
-            // 15vh is the bottom scroll zone. 
-            // If touch Y is < 85% of height, it's in the drawing area.
-            if (e.touches[0].clientY < h * 0.85) {
-                e.preventDefault(); // Stop scroll
-                updateMouse(e.touches[0].clientX, e.touches[0].clientY);
-            }
-        }, { passive: false }); 
-
-        function drawBrush(p1, p2, isGhost = false, ghostSize = null, taperFactor = 1.0) {
-            const speed = Math.hypot(p2.x - p1.x, p2.y - p1.y);
-            let targetSize = isGhost && ghostSize 
-                ? ghostSize 
-                : Math.max(CONFIG.minBrushSize, CONFIG.baseBrushSize - speed * 1.5);
-            targetSize *= taperFactor;
-            if (targetSize < 1) return;
-            currentBrushSize += (targetSize - currentBrushSize) * 0.2;
-            ctx.globalCompositeOperation = 'destination-out';
-            ctx.lineWidth = currentBrushSize;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-            ctx.shadowBlur = 0; 
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            const midX = (p1.x + p2.x) / 2;
-            const midY = (p1.y + p2.y) / 2;
-            ctx.quadraticCurveTo(midX, midY, p2.x, p2.y);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.arc(p2.x, p2.y, currentBrushSize / 2, 0, Math.PI * 2);
-            ctx.fill();
-        }
-
-        function updateProjectile() {
-            if (!projectile.active) {
-                if (Date.now() > lastInteractionTime + CONFIG.idleDelay) {
-                    const w = window.innerWidth;
-                    const h = window.innerHeight;
-                    const side = Math.floor(Math.random() * 4);
-                    let startX, startY, velX, velY;
-                    const s = 8 + Math.random() * 6; 
-                    if (side === 0) { startX = Math.random() * w; startY = -150; velX = (Math.random() - 0.5) * 5; velY = s; }
-                    else if (side === 1) { startX = w + 150; startY = Math.random() * h; velX = -s; velY = (Math.random() - 0.5) * 5; }
-                    else if (side === 2) { startX = Math.random() * w; startY = h + 150; velX = (Math.random() - 0.5) * 5; velY = -s; }
-                    else { startX = -150; startY = Math.random() * h; velX = s; velY = (Math.random() - 0.5) * 5; }
-                    projectile.active = true;
-                    projectile.x = startX; projectile.y = startY;
-                    projectile.vx = velX; projectile.vy = velY;
-                    projectile.life = 0;
-                    projectile.maxLife = 220; 
-                    projectile.wobble = 0;
-                }
-            } else {
-                projectile.life++;
-                projectile.wobble += 0.2;
-                lastInteractionTime = Date.now(); 
-                const lastX = projectile.x;
-                const lastY = projectile.y;
-                const wobbleOffset = Math.sin(projectile.wobble) * 3;
-                projectile.x += projectile.vx + wobbleOffset;
-                projectile.y += projectile.vy + wobbleOffset;
-                const w = window.innerWidth; const h = window.innerHeight;
-                const outOfBounds = (projectile.x < -200 || projectile.x > w + 200 || projectile.y < -200 || projectile.y > h + 200);
-                if (projectile.life > projectile.maxLife || outOfBounds) {
-                    projectile.active = false;
-                    lastInteractionTime = Date.now() - 800; 
-                }
-                let taperFactor = 1.0;
-                if (projectile.life < 30) taperFactor = projectile.life / 30;
-                else if (projectile.life > projectile.maxLife - 30) taperFactor = (projectile.maxLife - projectile.life) / 30;
-                const pulse = (CONFIG.baseBrushSize * 0.7 + Math.sin(projectile.wobble) * 30);
-                drawBrush({x: lastX, y: lastY}, {x: projectile.x, y: projectile.y}, true, pulse, taperFactor);
-            }
-        }
-
-        function tick() {
-            if (isLoaded && !disableEffects) {
-                healCanvas();
-                updateProjectile();
-            }
-            requestAnimationFrame(tick);
-        }
-
-        /* --- SCROLL LOGIC --- */
-        const lerp = (start, end, t) => start * (1 - t) + end * t;
-        const heroWrapper = document.getElementById('hero-wrapper');
-        const heroText = document.getElementById('hero-text');
-        const eventWrappers = document.querySelectorAll('.event-wrapper');
-
-        window.addEventListener('scroll', () => {
-            const viewportHeight = window.innerHeight;
-            const heroRect = heroWrapper.getBoundingClientRect();
-            let heroProgress = -heroRect.top / (heroRect.height - viewportHeight);
-            heroProgress = Math.max(0, Math.min(1, heroProgress));
-
-            // Hero
-            if (heroProgress > 0.05) {
-                disableEffects = true;
-                canvas.style.opacity = '0';      
-                tintOverlay.style.opacity = '0.85'; 
-            } else {
-                disableEffects = false;
-                canvas.style.opacity = '1';
-                tintOverlay.style.opacity = '0';
-            }
-
-            // Hero Title
-            if (heroProgress < 0.1) {
-                heroText.style.opacity = 0;
-                heroText.style.transform = `translate(-50%, calc(-50% + 60px)) scale(0.95)`;
-                heroText.style.filter = `blur(12px)`;
-            } else if (heroProgress < 0.7) {
-                const t = (heroProgress - 0.1) / 0.6; 
-                const easedT = t * (2 - t); 
-                heroText.style.opacity = easedT;
-                heroText.style.transform = `translate(-50%, calc(-50% + ${lerp(60, 0, easedT)}px)) scale(${lerp(0.95, 1.0, easedT)})`;
-                heroText.style.filter = `blur(${lerp(12, 0, easedT)}px)`;
-            } else {
-                heroText.style.opacity = 1;
-                heroText.style.transform = `translate(-50%, -50%) scale(1.0)`;
-                heroText.style.filter = `blur(0px)`;
-            }
-
-            // Cards Logic
-            eventWrappers.forEach(wrapper => {
-                const card = wrapper.querySelector('.event-card');
-                const text = wrapper.querySelector('.card-content');
-                const rect = wrapper.getBoundingClientRect();
-                let progress = -rect.top / (rect.height - viewportHeight);
-                progress = Math.max(0, Math.min(1, progress));
-
-                // 1. EXPAND (0.0 - 0.25)
-                if (progress < 0.25) {
-                    const t = progress / 0.25;
-                    const isMobile = window.innerWidth < 768;
-                    const startW = isMobile ? window.innerWidth * 0.85 : 400;
-                    const startH = isMobile ? window.innerHeight * 0.6 : 600;
-                    
-                    card.style.width = `${lerp(startW, window.innerWidth, t)}px`;
-                    card.style.height = `${lerp(startH, window.innerHeight, t)}px`;
-                    card.style.transform = `none`;
-                    text.style.opacity = 0;
-                    text.style.transform = `translateY(30px)`;
-                } 
-                // 2. VIDEO PAUSE (0.25 - 0.30) -> Short pause for video focus
-                else if (progress < 0.30) {
-                    card.style.width = '100vw';
-                    card.style.height = '100vh';
-                    text.style.opacity = 0;
-                    text.style.transform = `translateY(30px)`;
-                }
-                // 3. TEXT REVEAL (0.30 - 0.45)
-                else if (progress < 0.45) {
-                    card.style.width = '100vw';
-                    card.style.height = '100vh';
-                    const t = (progress - 0.30) / 0.15;
-                    const easedT = Math.min(1, t * (2 - t));
-                    text.style.opacity = easedT;
-                    text.style.transform = `translateY(${lerp(30, 0, easedT)}px)`;
-                }
-                // 4. READ PAUSE (0.45 - 1.0) -> Long pause for reading
-                else {
-                    card.style.width = '100vw';
-                    card.style.height = '100vh';
-                    text.style.opacity = 1;
-                    text.style.transform = `translateY(0px)`;
-                }
+            sections.forEach((sec, idx) => {
+                if(idx === currentIndex) sec.classList.add('active');
+                else sec.classList.remove('active');
             });
-        });
+        }
+
+        // --- TAP NAVIGATION (Top/Bottom) ---
+        function handleTap(e) {
+            if (e.target.closest('.music-btn') || e.target.closest('a')) return;
+
+            const screenHeight = window.innerHeight;
+            const clickY = e.clientY;
+
+            if (clickY < screenHeight * 0.3) {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlide();
+                }
+            } 
+            else {
+                if (currentIndex < totalSlides - 1) {
+                    currentIndex++;
+                    updateSlide();
+                }
+            }
+        }
+
+        function goToStart(e) {
+            e.stopPropagation();
+            currentIndex = 0;
+            updateSlide();
+        }
+
+        /* --- AUDIO LOGIC WITH AUTO-START --- */
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.querySelector('.music-btn');
+        const musicIcon = document.querySelector('.music-btn i');
+        let isPlaying = false;
+
+        // Auto-start music on first user interaction
+        let musicStarted = false;
         
-        window.dispatchEvent(new Event('scroll'));
+        function startMusicOnInteraction() {
+            if (!musicStarted) {
+                bgMusic.play().then(() => {
+                    musicIcon.classList.remove('fa-volume-xmark');
+                    musicIcon.classList.add('fa-music');
+                    musicBtn.classList.add('playing');
+                    isPlaying = true;
+                    musicStarted = true;
+                }).catch(err => {
+                    console.log("Audio autoplay blocked - user must click music button");
+                });
+            }
+        }
+
+        // Try to start music on any interaction
+        document.addEventListener('click', startMusicOnInteraction, { once: true });
+        document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
+
+        function toggleMusic(e) {
+            e.stopPropagation();
+            musicStarted = true;
+            
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.classList.remove('fa-music');
+                musicIcon.classList.add('fa-volume-xmark');
+                musicBtn.classList.remove('playing');
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    musicIcon.classList.remove('fa-volume-xmark');
+                    musicIcon.classList.add('fa-music');
+                    musicBtn.classList.add('playing');
+                    isPlaying = true;
+                }).catch(err => console.log("Audio blocked"));
+            }
+        }
+
+        // Init Background Image
+        const revealLayer = document.getElementById('reveal-layer');
+        if (revealLayer) {
+            revealLayer.src = CONFIG.bottomImage;
+        }
+
+        // Force Video Autoplay
+        document.querySelectorAll('video').forEach(vid => {
+            vid.play().catch(e => {});
+        });
+
+        // Initialize
+        updateSlide();
     </script>
 </body>
 </html>
