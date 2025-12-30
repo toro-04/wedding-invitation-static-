@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Jagdeep & Tarandeep | Wedding Invitation</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💍</text></svg>">
     
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -82,23 +79,24 @@ body {
     to { opacity: 1; transform: translateX(0); }
 }
 
-/* Staggered animation classes for first page */
+/* Staggered animation classes - UPDATED to trigger only when section is active */
 .animate-item {
-    opacity: 0;
+    opacity: 0; /* Hidden by default */
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.anim-1 { animation: fadeInDown 0.8s 0.2s forwards; }
-.anim-2 { animation: fadeInScale 0.8s 0.4s forwards; }
-.anim-3 { animation: fadeIn 0.6s 0.6s forwards; }
-.anim-4 { animation: slideInLeft 0.8s 0.8s forwards; }
-.anim-5 { animation: fadeInUp 0.8s 1s forwards; }
-.anim-6 { animation: fadeInScale 0.9s 1.2s forwards; }
-.anim-7 { animation: fadeInScale 0.9s 1.4s forwards; }
-.anim-8 { animation: fadeInScale 0.9s 1.6s forwards; }
-.anim-9 { animation: fadeInUp 0.8s 1.8s forwards; }
-.anim-10 { animation: fadeIn 0.8s 2s forwards; }
+/* Only run animations when the parent section has the 'active' class */
+.section.active .anim-1 { animation: fadeInDown 0.8s 0.2s forwards; }
+.section.active .anim-2 { animation: fadeInScale 0.8s 0.4s forwards; }
+.section.active .anim-3 { animation: fadeIn 0.8s 0.6s forwards; }
+.section.active .anim-4 { animation: slideInLeft 0.8s 0.8s forwards; }
+.section.active .anim-5 { animation: fadeInUp 0.8s 1s forwards; }
+.section.active .anim-6 { animation: fadeInScale 0.9s 1.2s forwards; }
+.section.active .anim-7 { animation: fadeInScale 0.9s 1.4s forwards; }
+.section.active .anim-8 { animation: fadeInScale 0.9s 1.6s forwards; }
+.section.active .anim-9 { animation: fadeInUp 0.8s 1.8s forwards; }
+.section.active .anim-10 { animation: fadeIn 0.8s 2s forwards; }
 
 /* Overflowing Floral Decorations */
 .floral-overflow {
@@ -199,8 +197,6 @@ body {
         max-height: 280px;
     }
 }
-
-
 
 /* --- LAYOUT & SLIDER --- */
 .main-container {
@@ -549,7 +545,6 @@ body {
 </head>
 <body onclick="handleTap(event)">
 
-    <!-- AUDIO -->
     <audio id="bg-music" loop>
         <source src="./WhatsApp Video 2025-12-26 at 3.10.21 PM.mp3" type="audio/mp3">
     </audio>
@@ -557,18 +552,15 @@ body {
         <i class="fas fa-music"></i>
     </div>
 
-    <!-- MAIN SLIDER -->
     <div class="main-container" id="slider">
 
-        <!-- PAGE 1: COVER WITH STAGGERED ANIMATIONS -->
         <section class="section active" id="p1">
             <div class="hero-layer pointer-events-none">
                 <img id="reveal-layer" src="./Screenshot 2025-12-26 155900.jpg" class="w-full h-full object-cover opacity-20" alt="Background">
             </div>
             
             <div class="royal-card z-10">
-                <!-- Floral Corners -->
-            <img src="./topright.svg" alt="Floral" class="floral-overflow floral-top-right">
+                <img src="./topright.svg" alt="Floral" class="floral-overflow floral-top-right">
             <img src="./topright.svg" alt="Floral" class="floral-overflow floral-top-left">
             <img src="./bottomright.svg" alt="Floral" class="floral-overflow floral-bottom-right">
             <img src="./bottomright.svg" alt="Floral" class="floral-overflow floral-bottom-left">
@@ -603,60 +595,51 @@ body {
         </section>
 
         
-       <!-- PAGE 2: PRE-WEDDING RITUALS - REDESIGNED -->
-<section class="section" id="p2">
+       <section class="section" id="p2">
     <div class="royal-card">
-        <!-- Overflowing Floral Decorations -->
         <img src="./topright.svg" alt="Floral" class="floral-overflow floral-top-right">
         <img src="./topright.svg" alt="Floral" class="floral-overflow floral-top-left">
         <img src="./bottomright.svg" alt="Floral" class="floral-overflow floral-bottom-right">
         <img src="./bottomright.svg" alt="Floral" class="floral-overflow floral-bottom-left">
 
         <div class="card-content">
-            <!-- Palki Sahib PNG -->
-            <div class="palki-illustration" style="margin: 0 auto -70px; text-align: center;">
+            <div class="palki-illustration animate-item anim-1" style="margin: 0 auto -70px; text-align: center;">
                 <img src="./Screenshot 2025-12-26 155900.jpg" alt="Palki Sahib" style="width: 130px; height: auto; display: inline-block;">
             </div>
 
-            <!-- Royal Ornamental Border Top -->
-            <div style="margin: 0 40px 8px 40px; text-align: center;">
-    <img src="./border.png" alt="Border" style="width: 100%; max-width: 250px; height: auto; filter: brightness(0) saturate(100%) invert(55%) sepia(85%) saturate(450%) hue-rotate(5deg);">
-</div>
+            <div class="animate-item anim-2" style="margin: 0 40px 8px 40px; text-align: center;">
+                <img src="./border.png" alt="Border" style="width: 100%; max-width: 250px; height: auto; filter: brightness(0) saturate(100%) invert(55%) sepia(85%) saturate(450%) hue-rotate(5deg);">
+            </div>
 
 
-            <h2 class="font-royal text-2xl text-[#b8860b] font-bold" style="letter-spacing: 4px; margin-bottom: 5px; margin-top: -60px;">RITUALS</h2>
-            <p class="font-serif text-[#2f5d62] text-sm" style="margin-bottom: 12px;">Tuesday , 10 December </p>
+            <h2 class="font-royal text-2xl text-[#b8860b] font-bold animate-item anim-3" style="letter-spacing: 4px; margin-bottom: 5px; margin-top: -60px;">RITUALS</h2>
+            <p class="font-serif text-[#2f5d62] text-sm animate-item anim-3" style="margin-bottom: 12px;">Tuesday , 10 December </p>
 
-            <!-- Event List with Dotted Lines -->
             <div style="width: 100%; margin: 12px 0; padding: 0 20px;">
-                <!-- Sukhmani Sahib Path -->
-                <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px dotted rgba(184, 134, 11, 0.4);">
+                <div class="animate-item anim-4" style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px dotted rgba(184, 134, 11, 0.4);">
                     <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic;">Sukhmani Sahib</span>
                     <span style="flex: 0 0 auto; padding: 0 8px; color: #b8860b; font-size: 0.65rem; letter-spacing: 1px;">..................</span>
                     <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic; font-weight: 600;">10:00 AM</span>
                 </div>
 
-                <!-- Haldi -->
-                <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px dotted rgba(184, 134, 11, 0.4);">
+                <div class="animate-item anim-5" style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px dotted rgba(184, 134, 11, 0.4);">
                     <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic;">Haldi</span>
                     <span style="flex: 0 0 auto; padding: 0 8px; color: #b8860b; font-size: 0.65rem; letter-spacing: 1px;">..................</span>
                     <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic; font-weight: 600;">4:00 PM</span>
                 </div>
 
-                <!-- Jago Night -->
-                <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0;">
+                <div class="animate-item anim-6" style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0;">
                     <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic;">Jago Night</span>
                     <span style="flex: 0 0 auto; padding: 0 8px; color: #b8860b; font-size: 0.65rem; letter-spacing: 1px;">..................</span>
                     <span style="font-family: 'Playfair Display', serif; font-size: 0.95rem; color: #2c2c2c; font-style: italic; font-weight: 600;">7:00 PM</span>
                 </div>
             </div>
 
-            <!-- Royal Ornamental Border Bottom (Rotated 180°) -->
-            <div style="margin: -40px 40px -50px 50px; text-align: center;">
+            <div class="animate-item anim-7" style="margin: -40px 40px -50px 50px; text-align: center;">
                 <img src="./border.png" alt="Border" style="width: 100%; max-width: 300px; height: auto; transform: rotate(180deg); filter: brightness(0) saturate(100%) invert(55%) sepia(85%) saturate(450%) hue-rotate(5deg);">
             </div>
 
-            <div class="venue-tag" style="margin-bottom: 40px; ;">
+            <div class="venue-tag animate-item anim-8" style="margin-bottom: 40px;">
                 <span class="venue-icon">📍</span>
                 <span>RESIDENCE-CHOTI GANDHO</span>
             </div>
@@ -664,50 +647,43 @@ body {
     </div>
 </section>
 
-
-
-
-
-        <!-- PAGE 3: THE WEDDING (Feb 11) -->
         <section class="section" id="p3">
             <div class="royal-card">
-                <!-- Floral Corners -->
-              <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-left">
+                <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-left">
             <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-right">
             <img src="./rosesborder1.png" alt="Roses" class="roses-border-bottom-left">
             <img src="./rosesborder1.png" alt="Roses" class="roses-border-bottom-right">
-               
+                
                 <div class="card-content">
-                    <h2 class="font-script text-4xl text-[#b8860b] mb-1">Anand Karaj</h2>
-                    <p class="font-serif text-[#2f5d62] text-sm mb-4">Wednesday, 11th February 2026</p>
+                    <h2 class="font-script text-4xl text-[#b8860b] mb-1 animate-item anim-1">Anand Karaj</h2>
+                    <p class="font-serif text-[#2f5d62] text-sm mb-4 animate-item anim-2">Wednesday, 11th February 2026</p>
 
-                    <!-- Wedding Video inside Frame -->
-                    <div class="video-frame">
+                    <div class="video-frame animate-item anim-3">
                         <video autoplay muted loop playsinline webkit-playsinline>
                             <source src="./wedding.mp4" type="video/mp4">
                         </video>
                     </div>
 
                     <div class="w-full mt-4 text-left px-2">
-                        <div class="flex justify-between mb-3 border-b border-dashed border-[#b8860b] pb-2">
+                        <div class="flex justify-between mb-3 border-b border-dashed border-[#b8860b] pb-2 animate-item anim-4">
                             <span class="font-royal text-sm text-[#2f5d62]">Barat Reception</span>
                             <span class="font-bold text-[#b8860b]">9:00 AM</span>
                         </div>
-                        <div class="flex justify-between mb-3 border-b border-dashed border-[#b8860b] pb-2">
+                        <div class="flex justify-between mb-3 border-b border-dashed border-[#b8860b] pb-2 animate-item anim-5">
                             <span class="font-royal text-sm text-[#2f5d62] font-bold">Anand Karaj</span>
                             <span class="font-bold text-[#b8860b] text-lg">11:00 AM</span>
                         </div>
-                        <div class="flex justify-between mb-3 border-b border-dashed border-[#b8860b] pb-2">
+                        <div class="flex justify-between mb-3 border-b border-dashed border-[#b8860b] pb-2 animate-item anim-6">
                             <span class="font-royal text-sm text-[#2f5d62]">Lunch</span>
                             <span class="font-bold text-[#b8860b]">1:00 PM</span>
                         </div>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between animate-item anim-7">
                             <span class="font-royal text-sm text-[#2f5d62]">Doli</span>
                             <span class="font-bold text-[#b8860b]">4:00 PM</span>
                         </div>
                     </div>
 
-                    <div class="venue-tag">
+                    <div class="venue-tag animate-item anim-8">
                         <span class="venue-icon">📍</span>
                         <span>JS RESORT-1</span>
                     </div>
@@ -715,47 +691,44 @@ body {
             </div>
         </section>
 
-        <!-- PAGE 4: RSVP -->
         <section class="section" id="p4">
             <div class="royal-card">
-                <!-- Floral Corners -->
-              <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-left">
+                <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-left">
             <img src="./rosesborder1.png" alt="Roses" class="roses-border-top-right">
             <img src="./rosesborder1.png" alt="Roses" class="roses-border-bottom-left">
             <img src="./rosesborder1.png" alt="Roses" class="roses-border-bottom-right">
-               
+                
 
                 <div class="card-content">
-                    <h2 class="font-royal text-2xl text-[#2f5d62] mb-4">Venue & RSVP</h2>
+                    <h2 class="font-royal text-2xl text-[#2f5d62] mb-4 animate-item anim-1">Venue & RSVP</h2>
                     
-                    <!-- Map / QR Video Placeholder -->
-                    <div class="video-frame" style="height: 180px;">
+                    <div class="video-frame animate-item anim-2" style="height: 180px;">
                         <video autoplay muted loop playsinline webkit-playsinline>
                             <source src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_25fps.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <div class="text-center mb-4">
+                    <div class="text-center mb-4 animate-item anim-3">
                         <p class="font-bold text-[#2f5d62]">JS Resort-1</p>
                         <p class="text-xs text-gray-600">Shampura, Rupanagar, Punjab</p>
                         <a href="https://maps.app.goo.gl/hyvYnoedAVztojsRA" target="_blank" class="text-[10px] text-[#b8860b] underline mt-1 block">VIEW MAP</a>
                     </div>
 
-                    <div class="divider-ornament">
+                    <div class="divider-ornament animate-item anim-4">
                         <div class="divider-line"></div>
                         <div class="divider-icon">❦</div>
                         <div class="divider-line"></div>
                     </div>
 
-                    <p class="text-xs font-bold text-[#b8860b] tracking-widest uppercase mb-1">With Best Compliments</p>
-                    <p class="font-royal text-lg text-[#2f5d62] mb-6">All Relatives & Friends</p>
+                    <p class="text-xs font-bold text-[#b8860b] tracking-widest uppercase mb-1 animate-item anim-5">With Best Compliments</p>
+                    <p class="font-royal text-lg text-[#2f5d62] mb-6 animate-item anim-5">All Relatives & Friends</p>
 
-                    <div class="bg-[#f9f9f9] border border-[#e0d0a0] p-3 rounded-lg w-full mb-4">
+                    <div class="bg-[#f9f9f9] border border-[#e0d0a0] p-3 rounded-lg w-full mb-4 animate-item anim-6">
                         <p class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">RSVP</p>
                         <a href="tel:+919350904259" class="font-royal text-lg text-[#2f5d62] block">+91 9350904259</a>
                         <a href="tel:+918800102547" class="font-royal text-lg text-[#2f5d62] block">+91 8800102547</a>
                         <a href="tel:+919811787448" class="font-royal text-lg text-[#2f5d62] block">+91 9811787448</a>
                     </div>             
-                    <div class="mt-6 text-[10px] text-gray-400 cursor-pointer hover:text-[#b8860b]" onclick="goToStart(event)">
+                    <div class="mt-6 text-[10px] text-gray-400 cursor-pointer hover:text-[#b8860b] animate-item anim-7" onclick="goToStart(event)">
                         <i class="fas fa-redo"></i> START OVER
                     </div>
                 </div>
@@ -775,6 +748,7 @@ body {
         const sections = document.querySelectorAll('.section');
         const slider = document.getElementById('slider');
         const totalSlides = sections.length;
+        let idleTimeout;
 
         function updateSlide() {
             slider.style.transform = `translateY(-${currentIndex * 100}vh)`;
@@ -783,10 +757,30 @@ body {
                 if(idx === currentIndex) sec.classList.add('active');
                 else sec.classList.remove('active');
             });
+            
+            // Reset idle timer whenever the slide updates
+            resetIdleTimer();
+        }
+
+        // --- IDLE TIMER LOGIC ---
+        function resetIdleTimer() {
+            // Clear existing timer
+            clearTimeout(idleTimeout);
+
+            // Only start the timer if we are NOT on the last page
+            if (currentIndex < totalSlides - 1) {
+                idleTimeout = setTimeout(() => {
+                    currentIndex++;
+                    updateSlide();
+                }, 7500); 
+            }
         }
 
         // --- TAP NAVIGATION (Top/Bottom) ---
         function handleTap(e) {
+            // Reset the idle timer on user interaction
+            resetIdleTimer();
+
             if (e.target.closest('.music-btn') || e.target.closest('a')) return;
 
             const screenHeight = window.innerHeight;
@@ -841,6 +835,9 @@ body {
 
         function toggleMusic(e) {
             e.stopPropagation();
+            // Reset idle timer when toggling music
+            resetIdleTimer();
+            
             musicStarted = true;
             
             if (isPlaying) {
@@ -875,6 +872,3 @@ body {
     </script>
 </body>
 </html>
-
-
-
